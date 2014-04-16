@@ -1,7 +1,7 @@
-#ifndef VIEW_H
-#define VIEW_H
+#pragma once
 
 #include "Agent.h"
+
 class View
 {
 public:
@@ -9,5 +9,3 @@ public:
     virtual void drawFood(int x, int y, float quantity) = 0;
     virtual void drawMisc() = 0;
 };
-
-#endif // VIEW_H

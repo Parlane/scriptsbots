@@ -3,4 +3,4 @@
 *.kdev4
 Debug/
 Release/
-build/
+[Bb]uild/

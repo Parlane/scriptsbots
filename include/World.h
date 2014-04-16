@@ -1,35 +1,36 @@
-#ifndef WORLD_H
-#define WORLD_H
+#pragma once
 
-#include "View.h"
 #include "Agent.h"
-#include "settings.h"
+#include "Settings.h"
+#include "View.h"
+
 #include <vector>
+
 class World
 {
 public:
     World();
     ~World();
-    
+
     void update();
     void reset();
-    
-    void draw(View* view, bool drawfood);
-    
+
+    void draw(View *view, bool drawfood);
+
     bool isClosed() const;
     void setClosed(bool close);
-    
+
     /**
-     * Returns the number of herbivores and 
+     * Returns the number of herbivores and
      * carnivores in the world.
      * first : num herbs
      * second : num carns
      */
-    std::pair<int,int> numHerbCarnivores() const;
-    
-    int numAgents() const;
+    std::pair<int, int> numHerbCarnivores() const;
+
+    size_t numAgents() const;
     int epoch() const;
-    
+
     //mouse interaction
     void processMouse(int button, int state, int x, int y);
 
@@ -37,35 +38,33 @@ public:
     void addRandomBots(int num);
     void addCarnivore();
     void addHerbivore();
-    
-    void positionOfInterest(int type, float &xi, float &yi);
-    
+
+    void addRandomFood();
+
+    void positionOfInterest(int type, Vector2f *pos);
+
     std::vector<int> numCarnivore;
-    std::vector<int> numHerbivore; 
-    int ptr;
-    
+    std::vector<int> numHerbivore;
+    size_t ptr;
+
 private:
     void setInputs();
     void processOutputs();
     void brainsTick();  //takes in[] to out[] for every agent
-    
+
     void writeReport();
-    
-    void reproduce(int ai, float MR, float MR2);
-    
+
+    void reproduce(Agent &ai, float MR, float MR2);
+
     int modcounter;
     int current_epoch;
     int idcounter;
-    
-    std::vector<Agent> agents;
-    
-    // food
-    int FW;
-    int FH;
-    int fx;
-    int fy;
-    float food[conf::WIDTH/conf::CZ][conf::HEIGHT/conf::CZ];
-    bool CLOSED; //if environment is closed, then no random bots are added per time interval
-};
 
-#endif // WORLD_H
+    std::vector<Agent> agents;
+
+    // food
+    Vector2<int> food_size;
+    float food[conf::WIDTH / conf::CZ][conf::HEIGHT / conf::CZ];
+
+    bool closed; //if environment is closed, then no random bots are added per time interval
+};

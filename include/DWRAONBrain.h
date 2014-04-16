@@ -1,13 +1,13 @@
-#ifndef DWRAONBRAIN_H
-#define DWRAONBRAIN_H
+#pragma once
 
-#include "settings.h"
-#include "helpers.h"
+#include "Helpers.h"
+#include "Settings.h"
 
 #include <vector>
 
 
-class Box {
+class Box
+{
 public:
 
     Box();
@@ -37,13 +37,11 @@ public:
 
     DWRAONBrain();
     DWRAONBrain(const DWRAONBrain &other);
-    virtual DWRAONBrain& operator=(const DWRAONBrain& other);
+    virtual DWRAONBrain &operator=(const DWRAONBrain &other);
 
-    void tick(std::vector<float>& in, std::vector<float>& out);
+    void tick(std::vector<float> &in, std::vector<float> &out);
     void mutate(float MR, float MR2);
-    DWRAONBrain crossover( const DWRAONBrain &other );
+    DWRAONBrain crossover(const DWRAONBrain &other);
 private:
     void init();
 };
-
-#endif
